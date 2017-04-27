@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Amigo Secreto</title>
+	<h:outputStylesheet name="css/template.css" />
+</h:head>
+
+<h:body>
+
+	<div class="container">
+		<div class="login">
+			<h1>Amigo Secreto</h1>
+			<h:form>
+				<p:growl id="growl" for="message" showDetail="true" />
+				<p>
+					<p:inputText value="#{loginBean.email}" placeholder="Email"
+						required="true" />
+				</p>
+				<p>
+					<p:password value="#{loginBean.senha}" placeholder="Senha"
+						required="true" />
+				</p>
+				<p class="submit">
+					<p:commandButton value="Logar" action="#{loginBean.logar}"
+						update="@form" />
+				</p>
+			</h:form>
+		</div>
+
+		<div class="login-help">
+			<p>
+				Novo usuário? <a href="cadastro.xhtml">Cadastrar</a>.
+			</p>
+		</div>
+	</div>
+
+
+	<br />
+
+	<br />
+
+	<br />
+
+
+
+</h:body>
+
+</html>

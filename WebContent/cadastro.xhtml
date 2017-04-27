@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Amigo Secreto</title>
+	<h:outputStylesheet name="css/template.css" />
+</h:head>
+
+<h:body>
+	<div class="container">
+	
+		<div class="cadastrar">
+		<h:form>
+			<p:growl id="growl" for="message" showSummary="true"
+				autoUpdate="true" showDetail="true" />
+			<H1>Cadastrar Usuario</H1>
+			<p:panelGrid columns="2" style="border:none">
+				<p:outputLabel value="Email: " for="email" />
+				<p:inputText value="#{cadastroBean.usuario.email}" id="email"
+					required="true" />
+				<p:outputLabel value="Senha: " for="senha" />
+				<p:password value="#{cadastroBean.usuario.senha}" id="senha"
+					required="true" />
+				<p:outputLabel value="Nome: " for="nome" />
+				<p:inputText value="#{cadastroBean.usuario.nome}" id="nome"
+					required="true" />
+				<p:commandButton value="Cadastrar"
+					action="#{cadastroBean.cadastrar}" update="@form" />
+			</p:panelGrid>
+		</h:form>
+	</div>
+	</div>
+</h:body>
+
+</html>

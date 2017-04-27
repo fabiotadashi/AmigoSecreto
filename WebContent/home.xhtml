@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+		<p:toolbar id="tb">
+			<f:facet name="left">
+				<p:breadCrumb>
+					<p:menuitem value="" url="#" />
+					<p:menuitem value="Listas de amigo Secreto" url="#" />
+				</p:breadCrumb>
+			</f:facet>
+			<f:facet name="right">
+				<p:button value="Meus Amigos Secretos" icon="fa fa-send-o"
+					href="meu_amigo_secreto.xhtml" />
+				<p:button value="Meus Sorteios" icon="fa fa-star-o"
+					href="meu_sorteio.xhtml" />
+				<p:button value="Novo Sorteio" icon="fa fa-edit"
+					href="novo_sorteio.xhtml" />
+				<p:commandButton value="Logout" icon="fa fa-sign-out" action="#{loginBean.logout}" />
+			</f:facet>
+		</p:toolbar>
+		<p:sticky target="tb" />
+		<h:form>
+			<p:growl id="growl" for="message" showDetail="true" />
+			<p:dataTable var="sorteio" value="#{sorteioBean.sorteios}">
+				<p:column headerText="Id">
+					<h:outputText value="#{sorteio.id}" />
+				</p:column>
+				<p:column headerText="Titulo">
+					<h:outputText value="#{sorteio.titulo}" />
+				</p:column>
+				<p:column headerText="Data">
+					<h:outputText value="#{sorteio.data}" />
+				</p:column>
+				<p:column headerText="Numero de participantes">
+					<h:outputText value="#{sorteio.quantidadeParticipantes}" />
+				</p:column>
+				<p:column headerText="" id="colunaParticipacao">
+					<p:commandButton value="Participar"
+						actionListener="#{sorteioBean.participar(sorteio)}"
+						icon="fa fa-thumbs-o-up" update="@form" rendered="#{!sorteio.participando(sorteioBean.emailUsuario)}"/>
+					<p:commandButton value="Já estou participando"
+						disabled="true" rendered="#{sorteio.participando(sorteioBean.emailUsuario)}"/>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
